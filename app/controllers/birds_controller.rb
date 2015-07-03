@@ -4,18 +4,18 @@ class BirdsController < ApplicationController
 
   # GET /birds.json
   def index
-    @birds = Bird.where(:visible => true)
+    birds = Bird.where(:visible => true)
 
-    render json: @birds, status: 200
+    render json: birds, status: 200
 
   end
 
   # GET /birds/1.json
   def show
-    @bird = Bird.find(params[:id])
+    bird = Bird.find(params[:id])
 
     if @bird
-      render json: @bird, status: 200
+      render json: bird, status: 200
     else
       render json: {msg: "not found"}, status: 404
     end
@@ -24,12 +24,12 @@ class BirdsController < ApplicationController
 
   # POST /birds.json
   def create
-    @bird = Bird.new(params[:bird])
+    bird = Bird.new(params[:bird])
 
-    if @bird.save
-      render json: @bird, status: :created, location: @bird
+    if bird.save
+      render json: bird, status: :created, location: bird
     else
-      render json: @bird.errors, status: :unprocessable_entity
+      render json: bird.errors, status: :unprocessable_entity
     end
 
   end
@@ -37,8 +37,8 @@ class BirdsController < ApplicationController
   # DELETE /birds/1
   # DELETE /birds/1.json
   def destroy
-    @bird = Bird.find(params[:id])
-    @bird.destroy
+    bird = Bird.find(params[:id])
+    bird.destroy
 
     head :no_content
 
