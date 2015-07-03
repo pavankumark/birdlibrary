@@ -1,0 +1,35 @@
+Required Softwares : > Ruby 1.9
+                      MongoDb
+
+cd to the application and run the bundle command
+bundle install
+
+Then run the server to start the app
+
+rails s
+
+To list the birds,
+
+GET localhost:3000/birds (assuming the local server running on 3000 port)
+
+To get perticular bird with :id
+
+GET localhost:3000/birds/:id
+
+To create new bird
+
+POST localhost:3000/birds
+    and the sample json data format is
+      {
+        "added": "2015-07-04",
+        "continents": [
+            "Asia"
+          ],
+        "family": "R falimy",
+        "name": "R",
+        "visible": true
+      }
+
+To delete a bird with :id
+
+DELETE localhost:3000/birds/:id
