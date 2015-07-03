@@ -24,12 +24,14 @@ class BirdsController < ApplicationController
 
   # POST /birds.json
   def create
-    bird = Bird.new(params[:bird])
+    bird = Bird.make(params)
 
-    if bird.save
-      render json: bird, status: :created, location: bird
+    if bird && bird.save
+      render json: bird, status: 201, location: bird
+    elsif bird
+      render json: bird.errors, status: 400
     else
-      render json: bird.errors, status: :unprocessable_entity
+      render json: {msg: "missing required fields"}, status: 400
     end
 
   end
